@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Sans:wdth,wght@62.5..100,100..900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="note.css">
+    <title>Eskulayout</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navigationHeaderContainer">
+            <div class="header">
+                <span>Eskulayout</span>
+                <i class='bx bx-chevrons-left' onclick="exitNavigationHeaderContainer()"></i>
+            </div>
+            <div class="navigationHeader">
+                    <!-- <button onclick="showqQuizContainer()"><i class='bx bxs-file-plus'></i> Quizes</button> -->
+                    <button onclick="showNotesContainer()"><i class='bx bxs-home'></i> Notes</button>
+                    <button onclick="showNotes('','')"><i class='bx bxs-plus-circle'></i> Create Notes</button>
+                    <button onclick="showCalendarContainer()"><i class='bx bx-calendar'></i>Calendar</button>
+            </div>
+        </div>
+        <div class="navigationBodyContainer">
+            <div class="navigationsNotesContainer">
+                <ul id="navigationsNotesContainer">                    
+                </ul>
+            </div>
+            <div class="navigationFooterContainer">
+                <ul>
+                    <li onclick="showSettings()"><i class='bx bx-cog'></i> Settings & Developer</li>
+                    <!-- <li><i class='bx bx-trash'></i>Trash</li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="mainbody">
+        <div class="notesBodyContainer">
+            <div class="bodyNavigation">
+                <span class="leftSideNavigation" onclick="showNavigationHeaderContainer()"><i class='bx bx-menu'></i></span>
+                <div class="rigthSideNavigation">
+                    <span onclick="showTodoContainer()"><i class='bx bxs-edit'></i></span>
+                    <span onclick="showAiChatNavigation()"><i class='bx bx-brain'></i></span>
+                </div>
+            </div>
+            <div class="bodyStatistic">
+                <div class="numberNotesContainer">
+                    <span class="title">Notes:</span>
+                    <span class="content" id="numberNotes">0</span>
+                </div>
+                <div class="numberNotesContainer">
+                    <span class="title">To do:</span>
+                    <span class="content" id="numberTodo">0</span>
+                </div>
+                <div class="numberNotesContainer">
+                    <span class="title">Date</span>
+                    <span class="content" id="numberDate"></span>
+                </div>
+            </div>
+            <div class="titleContainer">Notes</div>
+            <div class="mainNotesContainer" id="mainNotesContainer">
+                
+            </div>
+
+            <div class="addingNotesButton" onclick="showNotes('','')"><i class='bx bx-plus'></i></div>
+        </div>
+        
+        <div class="addingNotesBody">
+            <div class="addingNotesNavigation">
+                <span class="leftSideNavigation" id="addNotesExitButton"><i class='bx bx-chevrons-down'></i></span>
+                <div class="rigthSideNavigation">
+                    <span onclick="showTodoContainer()"><i class='bx bxs-edit'></i></span>
+                    <!-- <span><i class='bx bxs-file-plus'></i></span> -->
+                    <span onclick="showAiChatNavigation()"><i class='bx bx-brain'></i></span>
+                </div>
+            </div>
+            <div class="addingNotesContainer">
+                <div class="noteTitle" id="addTitleNotes" contenteditable="true"></div>
+                <div class="contentNote" id="addContentNotes" contenteditable="true"></div>
+            </div>
+        </div>
+
+        <!--Calendar Container-->
+        <section class="calendarSection">
+            <div class="bodyNavigation">
+                <span class="leftSideNavigation" onclick="showNavigationHeaderContainer()"><i class='bx bx-menu'></i></span>
+                <div class="rigthSideNavigation">
+                    <span onclick="showTodoContainer()"><i class='bx bxs-edit'></i></span>
+                    <span onclick="showAiChatNavigation()"><i class='bx bx-brain'></i></span>
+                </div>
+            </div>
+            <div class="calendarConatiner">
+                <div class="calendarNavigation">
+                    <button onclick="previousMonth()"><i class='bx bx-chevron-left'></i></button>
+                    <span id="monthYear"></span>
+                    <button onclick="nextMonth()"><i class='bx bx-chevron-right' ></i></button>
+                </div>
+    
+                <div class="calendar">
+                    <div class="day">Mon</div>
+                    <div class="day">Tue</div>
+                    <div class="day">Wed</div>
+                    <div class="day">Thu</div>
+                    <div class="day">Fri</div>
+                    <div class="day">Sat</div>
+                    <div class="day">Sun</div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                </div>
+            </div>
+            
+            <div class="listEventContainer">
+                <ul class="container" id="eventContainer">
+                    <li>No events for today.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!--Quiz Container-->
+        <section class="quizSection">
+            <div class="quizContainer">
+                <div class="bodyNavigation">
+                    <span class="leftSideNavigation" onclick="showNavigationHeaderContainer()"><i class='bx bx-menu'></i></span>
+                    <div class="rigthSideNavigation">
+                        <span onclick="showTodoContainer()"><i class='bx bxs-edit'></i></span>
+                        <span onclick="showAiChatNavigation()"><i class='bx bx-brain'></i></span>
+                    </div>
+                </div>
+            </div>
+            <h1 class="containerTitle">Playing Quiz!</h1>
+            <div class="playingQuizContainer">
+                <div class="quizContainer">
+                    <h1 class="quizTitle">Literature</h1>
+
+                    <button><i class='bx bx-play'></i></button>
+                    <span class="deleteQuiz"><i class='bx bxs-trash' ></i></span>
+                </div>
+            </div>
+
+        </section>
+    </section>
+
+    <!--Task Container-->
+    <aside class="todoContainer">
+        <div class="todoNavigation">
+            <i class='bx bx-chevrons-right' onclick="exitTodoContainer()"></i>
+            <span class="todoLits">Task</span>
+            <i></i>
+        </div>
+        <div class="topNavigation">
+            <div class="rateListContainer">
+                <button id="manageButton">Manage</button>
+                <button id="focusButton">Focus</button>
+                <button id="importantButton">Important</button>
+                <button id="allButton">All</button>
+            </div>
+            <div class="progress-circle" id="progressCircle">
+                <div class="progress-circle-inner" id="progressCircleInner"></div>
+                <div class="progress-text" id="progressText">0%</div>
+            </div>
+        </div>
+        <form id="todoForm">
+            <input type="text" id="taskInput" placeholder="Enter task" required>
+            <select id="categorySelect" required>
+                <option value="manage">Manage</option>
+                <option value="focus">Focus</option>
+                <option value="important">Important</option>
+            </select>
+            <input type="datetime-local" id="deadlineInput">
+            <div>
+                
+            </div>
+            <button type="submit">Add Task</button>
+        </form>
+            
+        <ul id="todoList"></ul>
+    </aside>
+    
+    
+    <!--AI Chat Container-->
+    <aside class="aiChatContainer" >
+        <div class="aiChatNavigation">
+            <i class='bx bx-chevrons-right' onclick="exitAiChatNavigation()"></i>
+            <span class="aiChatTitle">AI Chat</span>
+            <i></i>
+        </div>
+        <div class="messageContainer">
+            <ul class="chatbox">
+                <li class="chat incoming">
+                    <span><i class='bx bxs-ghost'></i></span>
+                    <p>Hi there <br> how can i help you today?</p>
+                </li>
+                
+            </ul>
+        </div>
+        <div class="chat-input">
+            <textarea placeholder="Enter a message..." required></textarea>
+            <span id="send-btn"><i class='bx bx-send' ></i></span>
+        </div>
+    </aside>
+
+
+
+    <!--Settings Container-->
+    <section class="settingContainer">
+        <div class="mainSettings">
+            <div class="navSettings">
+                <ul>
+                    <h1>About US</h1>
+                    <!-- <h1>User Settings</h1>
+                    <li onclick="showPersonal()">My Account</li>
+                    <hr> -->
+                    <li onclick="showAboutUs()">Intoduction</li>
+                    <li onclick="showAboutUs()">Developer</li>
+                    <li onclick="showAboutUs()">Contact Us</li>
+                </ul>
+            </div>
+            <!-- <div class="settingContent UserSettings">
+                <h1>Account Details</h1>
+                <div class="profile">
+                    <div class="dp"></div>
+                    <ul>
+                        <li>
+                            <span>Name:</span>
+                            <p>Gerald P. Manongdo</p>
+                        </li>
+                        <li>
+                            <span>Section:</span>
+                            <p>12-Ritchie</p>
+                        </li>
+                        <li>
+                            <span>Age:</span>
+                            <p>18 yrs old</p>
+                        </li>
+                        <li>
+                            <span>Email:</span>
+                            <p>ipoglang@depedqc.ph</p>
+                        </li>
+                        <li>
+                            <span>Phone Number:</span>
+                            <p>09996034433</p>
+                        </li>
+                    </ul>
+                </div>
+                <button>Delete Account</button>
+                <button class="logout">Log Out</button>
+            </div> -->
+            <div class="settingContent aboutUs">
+                <h1>About Us</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus placeat repudiandae dolor quasi veritatis, repellendus voluptatem esse temporibus minima, corrupti nulla laborum est ipsam reiciendis ullam iusto modi. Aliquid quo aut, libero rem possimus accusantium reprehenderit dolorem cupiditate labore eos modi repudiandae. Soluta ipsam quam dignissimos quod deleniti harum quasi, aspernatur repudiandae expedita, necessitatibus molestias quos at obcaecati optio quae quia labore similique blanditiis consequuntur fugiat repellat, corporis nam in eum. Dicta provident quis voluptas molestiae mollitia repellat soluta autem labore inventore quasi perspiciatis, voluptate, sapiente dolores! Rem, amet hic.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </p>
+                <h1>Developer</h1>
+                <div class="cardsContainer">
+                    <div class="card">
+                        <div class="image"><img src="image/gerald.png" alt=""></div>
+                        <h5 class="name">Gerald P. Manongdo
+                            <p class="position"> Developer</p>
+                        </h5>
+                    </div>
+                    <div class="card">
+                        <div class="image"><img src="image/gerald.png" alt=""></div>
+                        <h5 class="name">Gerald P. Manongdo
+                            <p class="position"> Developer</p>
+                        </h5>
+                    </div>
+                    <div class="card">
+                        <div class="image"><img src="image/gerald.png" alt=""></div>
+                        <h5 class="name">Gerald P. Manongdo
+                            <p class="position"> Developer</p>
+                        </h5>
+                    </div>
+                    <div class="card">
+                        <div class="image"><img src="image/gerald.png" alt=""></div>
+                        <h5 class="name">Gerald P. Manongdo
+                            <p class="position"> Developer</p>
+                        </h5>
+                    </div>
+                    <div class="card">
+                        <div class="image"><img src="image/gerald.png" alt=""></div>
+                        <h5 class="name">Gerald P. Manongdo
+                            <p class="position"> Developer</p>
+                        </h5>
+                    </div>
+                    <div class="card">
+                        <div class="image"><img src="image/gerald.png" alt=""></div>
+                        <h5 class="name">Gerald P. Manongdo
+                            <p class="position"> Developer</p>
+                        </h5>
+                    </div>
+                    <div class="card">
+                        <div class="image"><img src="image/gerald.png" alt=""></div>
+                        <h5 class="name">Gerald P. Manongdo
+                            <p class="position"> Developer</p>
+                        </h5>
+                    </div>
+                </div>
+                <h1>Contact Us</h1>
+                <div class="contactUs">
+                    <div>
+                        <span class="logo"><i class='bx bxs-navigation' ></i></span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <button>View on Google Maps</button>
+                    </div>
+                    <div>
+                        <span class="logo"><i class='bx bxs-phone'></i></span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <button>Call Us</button>
+                    </div>
+                    <div>
+                        <span class="logo"><i class='bx bxs-envelope'></i></span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <button>Email Us</button>
+                    </div>
+                </div>
+                <footer>
+                    <ul>
+                        <li>©2024 Eskulayout</li>
+                        <li>
+                            <i class='bx bxl-facebook-circle'></i>
+                            <i class='bx bxl-instagram'></i>
+                            <i class='bx bxl-twitter' ></i>
+                        </li>
+                    </ul>
+                </footer>
+            </div>
+
+            <span class="exitSettings" onclick="closeSettings()"><i class='bx bx-x'></i></span>
+        </div>
+    </section>
+
+
+    <script src="scirpt.js"></script>
+    <script src="ai.js"></script>
+    <script src="notes.js"></script>
+    <script src="todo.js"></script>
+    <!-- <script>
+        function clearLocalStorage() {
+            localStorage.clear();
+        }
+        clearLocalStorage();
+    </script> -->
+</body>
+</html

@@ -1,0 +1,1 @@
+var aiChatContainer = document.querySelector(".aiChatContainer");

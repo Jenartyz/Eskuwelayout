@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navigation with Hamburger Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .navbar-logo {
+            width: 80px;
+            height: auto;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .navbar-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 3px 0;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .show-links {
+                display: flex !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="navbar-logo">
+        <img src="your-logo.png" alt="Logo">
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div class="navbar-links">
+        <a href="#">Home</a>
+        <a href="#">Features</a>
+        <a href="#">About Us</a>
+    </div>
+
+</div>
+
+<script>
+    function toggleMenu() {
+        var navbarLinks = document.querySelector('.navbar-links');
+        navbarLinks.classList.toggle('show-links');
+    }
+</script>
+
+</body>
+</html>
